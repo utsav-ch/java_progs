@@ -7,28 +7,28 @@ public class LinkedList {
 	LinkedList nodeptr;//pointer to the last node
 	LinkedList newnode;//pointer to the new node
 	LinkedList start;//pointer to the first node
-	int nodecount;
+	int nodecount;//to keep the count of nodes
 	
 	void createNode(String str) {
 		newnode=new LinkedList();
-		newnode.data=str;
+		newnode.data=str;//initializing data in the node
 		if(nodeptr==null) {//if the new node is the first node
-			start=newnode;
-			nodeptr=newnode;
+			start=newnode;//pointing the start reference variable to the first node
+			nodeptr=newnode;//pointing the nodeptr reference variable to the only node on the list
 		}
 		System.out.println("New Node Created\n");
 	}
 	void insterAtEnd() {
 		if(newnode!=start) {//if the newnode is the only node of the list , no action required
-			nodeptr.ptr=newnode;
-			nodeptr=newnode;
+			nodeptr.ptr=newnode;//the second last node points to the last node
+			nodeptr=newnode;//nodeptr points to the last node
 			System.out.println("\nNew Node Inserted At The End\n");
 		}
 	}
 	void insterAtFront() {
 		if(newnode!=start) {//if the newnode is the only node of the list , no action required
-			newnode.ptr=start;
-			start=newnode;
+			newnode.ptr=start;//the newnode points to the second node
+			start=newnode;//the start points to the newnode now
 			System.out.println("\nNew Node Inserted At The Front\n");
 		}
 	}
@@ -59,7 +59,7 @@ public class LinkedList {
 		
 	void insertAtPos(int pos) {
 		
-		if(pos>=1 && pos<=(nodecount+1)) {
+		if(pos>=1 && pos<=(nodecount+1)) {// checking if the requested position is valid
 			if(pos==1) {
 				System.out.println("Node Insertion At The Front Requested");
 				insterAtFront();
@@ -70,7 +70,7 @@ public class LinkedList {
 			}
 			else {
 				LinkedList temptr=start;
-				for(int i=1;i<pos-1;i++) 
+				for(int i=1;i<pos-1;i++) //moving the pointer to the node after which instertion needs to be done
 					temptr=temptr.ptr;
 				
 				newnode.ptr=temptr.ptr;//newnode points to the next node
