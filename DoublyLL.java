@@ -54,13 +54,18 @@ public class DoublyLL {
 				insertAtEnd();
 			else {
 				DoublyLL ptr=start;
-				for(int i=1;i<(pos-1);i++)//traversing to the node after which insertion needs to be done 
+				for(int i=1;i<(pos-1);i++) //traversing to the node after which insertion needs to be done 
 					ptr=ptr.rptr;
+					
 				
 				newnode.lptr=ptr;
 				newnode.rptr=ptr.rptr;
 				ptr.rptr.lptr=newnode;
-				ptr.lptr=newnode;
+				ptr.rptr=newnode;
+				//System.out.println(ptr.rptr.data);//data
+				//System.out.println(newnode.lptr.data);//second
+				//System.out.println(newnode.rptr.data);//third
+				//System.out.println(newnode.rptr.lptr.data);//data
 			}
 			System.out.println("\nNode Insterted At Poistion "+pos);
 		}
@@ -72,7 +77,7 @@ public class DoublyLL {
 		int count=0;//counter
 		DoublyLL temptr=start;
 		while(temptr!=null) {
-			count++;
+			++count;
 			temptr=temptr.rptr;
 		}
 		return count;
