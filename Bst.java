@@ -48,12 +48,33 @@ public class Bst {
 	}
 	
 	void preOrderTraversal(Bst node) {
+		//root-left-right
 		System.out.println("Node Data : "+node.data);
 		if(node.ltree!=null)
 			preOrderTraversal(node.ltree);
 		if(node.rtree!=null)
 			preOrderTraversal(node.rtree);
 	}
+	
+	void inOrderTraversal(Bst node) {
+		//left-root-right
+		if(node.ltree!=null)
+			inOrderTraversal(node.ltree);
+		System.out.println("Node Data : "+node.data);
+		if(node.rtree!=null)
+			inOrderTraversal(node.rtree);
+	}
+	
+	void postOrderTraversal(Bst node) {
+		//left-right-root
+		if(node.ltree!=null)
+			postOrderTraversal(node.ltree);
+		if(node.rtree!=null)
+			postOrderTraversal(node.rtree);
+		System.out.println("Node Data : "+node.data);
+	}
+	
+	
 
 	public static void main(String[] args)throws IOException {
 		// TODO Auto-generated method stub
@@ -70,8 +91,13 @@ public class Bst {
 		}while(ch=='Y'||ch=='y');
 		
 		System.out.println("\nPreorder Traversal Of The Tree");
-		
 		obj.preOrderTraversal(obj.root);
+		
+		System.out.println("\n\nInorder Traversal Of The Tree");
+		obj.inOrderTraversal(obj.root);
+		
+		System.out.println("\n\nPostorder Traversal Of The Tree");
+		obj.postOrderTraversal(obj.root);
 	}
 
 }
