@@ -10,14 +10,21 @@ public class MaxHeap {
 	MaxHeap rsib;//right sibling
 	MaxHeap node;//temporary pointer to the current node
 	MaxHeap root;
+	MaxHeap parent;
 	
 	void swap(MaxHeap newnode) {
 		int temp;
-		if(newnode.data>node.data) {
-			temp=newnode.data;
-			newnode.data=node.data;
-			node.data=temp;
+		while(newnode!=root) {
+			if(newnode.data>newnode.parent.data) {
+				temp=newnode.data;
+				newnode.data=newnode.parent.data;
+				newnode.parent.data=temp;
+				newnode=newnode.parent;
+			}
+			else
+				break;
 		}
+		
 	}
 	
 	void insertNode(MaxHeap newnode) {
@@ -29,6 +36,7 @@ public class MaxHeap {
 		}
 		if(node.ltree==null) {//inserting the new node as the lest child 
 			node.ltree=newnode;
+			newnode.parent=node;
 			System.out.println("\nNewnode Inserted");
 			swap(newnode);//if the newnode data is greater than the parent
 			if(node.lsib!=null) {//if the parent node has a left sibling
@@ -40,6 +48,7 @@ public class MaxHeap {
 		else if(node.rtree==null) {
 			//inserting the newnode
 			node.rtree=newnode;
+			newnode.parent=node;
 			System.out.println("\nNewnode Inserted");
 			swap(newnode);
 			//establishing the relationships between the siblings
